@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import de la police personnalisée */
+@font-face {
+  font-family: 'Tan Pearl';
+  src: url('../../fonts/tan-pearl.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Variables CSS personnalisées */
+:root {
+  --cabane-brown: linear-gradient(90deg, rgba(139, 69, 19, 1) 0%, rgba(160, 82, 45, 1) 35%, rgba(210, 180, 140, 1) 100%);
+  --cabane-brown-fallback: #8B4513;
+}
+
+/* Styles de base */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Classes utilitaires personnalisées */
+@layer utilities {
+  .font-tan-pearl {
+    font-family: 'Tan Pearl', sans-serif;
+  }
+  
+  .font-great-vibes {
+    font-family: 'Tan Pearl', sans-serif;
+  }
+  
+  .font-cormorant {
+    font-family: Arial, sans-serif;
+  }
+  
+  .font-playfair {
+    font-family: Arial, sans-serif;
+  }
+  
+  .tracking-extra-wide {
+    letter-spacing: 0.2em;
+  }
+}
+
+/* Animations personnalisées */
+@layer components {
+  .btn-hover-lift {
+    transition: all 0.3s ease-out;
+  }
+  
+  .btn-hover-lift:hover {
+    transform: translateY(-1px) scale(1.05);
+  }
+}

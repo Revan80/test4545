@@ -1,0 +1,209 @@
+---
+// GalerieSection.astro - Section galerie interactive mobile-first
+---
+
+<section class="py-16 px-6 bg-white">
+  <div class="max-w-4xl mx-auto">
+    <!-- Titre -->
+    <h2 class="text-2xl font-great-vibes font-normal text-center mb-12" style="color: #7B4A2B;">
+      La Galerie
+    </h2>
+    
+    <!-- Image principale -->
+    <div class="relative mb-8">
+      <div class="aspect-[4/3] w-full max-w-2xl mx-auto overflow-hidden rounded-lg shadow-lg">
+        <img 
+          id="mainImage" 
+          src="/images/7937E548-A4D8-4891-BE63-7741DB5E6F8D.jpg" 
+          alt="Image principale de la galerie"
+          class="w-full h-full object-cover transition-opacity duration-500 ease-in-out"
+        >
+      </div>
+    </div>
+    
+    <!-- Indicateurs (points) -->
+    <div class="flex justify-center space-x-2 mb-8">
+      <div class="indicator-dot active" data-index="0"></div>
+      <div class="indicator-dot" data-index="1"></div>
+      <div class="indicator-dot" data-index="2"></div>
+      <div class="indicator-dot" data-index="3"></div>
+      <div class="indicator-dot" data-index="4"></div>
+      <div class="indicator-dot" data-index="5"></div>
+      <div class="indicator-dot" data-index="6"></div>
+    </div>
+    
+    <!-- Vignettes -->
+    <div class="flex justify-center space-x-3 overflow-x-auto pb-2">
+      <div class="thumbnail active" data-index="0" data-image="/images/7937E548-A4D8-4891-BE63-7741DB5E6F8D.jpg" data-alt="Coiffure 1">
+        <img src="/images/7937E548-A4D8-4891-BE63-7741DB5E6F8D.jpg" alt="Vignette 1" class="w-full h-full object-cover">
+      </div>
+      <div class="thumbnail" data-index="1" data-image="/images/8AE00F6A-CCB9-41DC-ACE7-86A69FFD11B7.jpg" data-alt="Coiffure 2">
+        <img src="/images/8AE00F6A-CCB9-41DC-ACE7-86A69FFD11B7.jpg" alt="Vignette 2" class="w-full h-full object-cover">
+      </div>
+      <div class="thumbnail" data-index="2" data-image="/images/95607D49-A34F-47F9-A1A7-EEB96AE10D4E.jpg" data-alt="Coiffure 3">
+        <img src="/images/95607D49-A34F-47F9-A1A7-EEB96AE10D4E.jpg" alt="Vignette 3" class="w-full h-full object-cover">
+      </div>
+      <div class="thumbnail" data-index="3" data-image="/images/Coiffure1.jpg" data-alt="Coiffure 4">
+        <img src="/images/Coiffure1.jpg" alt="Vignette 4" class="w-full h-full object-cover">
+      </div>
+      <div class="thumbnail" data-index="4" data-image="/images/Coiffure2.jpg" data-alt="Coiffure 5">
+        <img src="/images/Coiffure2.jpg" alt="Vignette 5" class="w-full h-full object-cover">
+      </div>
+      <div class="thumbnail" data-index="5" data-image="/images/Coiffure3.jpg" data-alt="Coiffure 6">
+        <img src="/images/Coiffure3.jpg" alt="Vignette 6" class="w-full h-full object-cover">
+      </div>
+      <div class="thumbnail" data-index="6" data-image="/images/Coiffure4.jpg" data-alt="Coiffure 7">
+        <img src="/images/Coiffure4.jpg" alt="Vignette 7" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Indicateurs (points) */
+  .indicator-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #d1d5db;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .indicator-dot.active {
+    background-color: #7B4A2B;
+    transform: scale(1.2);
+  }
+  
+  .indicator-dot:hover {
+    background-color: #9ca3af;
+  }
+  
+  .indicator-dot.active:hover {
+    background-color: #7B4A2B;
+  }
+  
+  /* Vignettes */
+  .thumbnail {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+  
+  .thumbnail.active {
+    border-color: #7B4A2B;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(123, 74, 43, 0.3);
+  }
+  
+  .thumbnail:hover {
+    transform: scale(1.02);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .thumbnail.active:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(123, 74, 43, 0.4);
+  }
+  
+  
+  /* Responsive */
+  @media (max-width: 375px) {
+    .thumbnail {
+      width: 60px;
+      height: 60px;
+    }
+    
+    .indicator-dot {
+      width: 10px;
+      height: 10px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .thumbnail {
+      width: 100px;
+      height: 100px;
+    }
+    
+    .indicator-dot {
+      width: 14px;
+      height: 14px;
+    }
+  }
+  
+  /* Animation pour le changement d'image */
+  #mainImage.fade-out {
+    opacity: 0;
+  }
+  
+  #mainImage.fade-in {
+    opacity: 1;
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const mainImage = document.getElementById('mainImage');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    const indicators = document.querySelectorAll('.indicator-dot');
+    
+    function changeImage(index, imageSrc, imageAlt) {
+      if (!mainImage) return;
+      
+      // Animation de fade out
+      mainImage.classList.add('fade-out');
+      
+      setTimeout(function() {
+        if (!mainImage) return;
+        
+        // Changer l'image
+        mainImage.src = imageSrc;
+        mainImage.alt = imageAlt;
+        
+        // Mettre à jour les vignettes actives
+        thumbnails.forEach(function(thumb) { thumb.classList.remove('active'); });
+        if (thumbnails[index]) thumbnails[index].classList.add('active');
+        
+        // Mettre à jour les indicateurs
+        indicators.forEach(function(dot) { dot.classList.remove('active'); });
+        if (indicators[index]) indicators[index].classList.add('active');
+        
+        // Animation de fade in
+        mainImage.classList.remove('fade-out');
+        mainImage.classList.add('fade-in');
+      }, 250);
+    }
+    
+    // Événements pour les vignettes
+    thumbnails.forEach(function(thumbnail, index) {
+      thumbnail.addEventListener('click', function() {
+        const imageSrc = thumbnail.dataset.image;
+        const imageAlt = thumbnail.dataset.alt;
+        if (imageSrc && imageAlt) {
+          changeImage(index, imageSrc, imageAlt);
+        }
+      });
+    });
+    
+    // Événements pour les indicateurs
+    indicators.forEach(function(indicator, index) {
+      indicator.addEventListener('click', function() {
+        const thumbnail = thumbnails[index];
+        if (thumbnail) {
+          const imageSrc = thumbnail.dataset.image;
+          const imageAlt = thumbnail.dataset.alt;
+          if (imageSrc && imageAlt) {
+            changeImage(index, imageSrc, imageAlt);
+          }
+        }
+      });
+    });
+  });
+</script>

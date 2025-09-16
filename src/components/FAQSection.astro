@@ -1,0 +1,263 @@
+---
+// FAQSection.astro - Section FAQ mobile-first
+---
+
+<section class="py-16 px-6 bg-white">
+  <div class="max-w-3xl mx-auto">
+    <!-- Titre -->
+    <h2 class="text-2xl font-great-vibes font-normal text-center mb-12" style="color: #7B4A2B;">
+      Questions Fréquentes
+    </h2>
+    
+    <!-- Liste des questions -->
+    <div class="space-y-4">
+      
+      <!-- Question 1 -->
+      <div class="faq-item">
+        <button class="faq-question" data-target="faq1">
+          <span class="text-lg font-playfair font-light" style="color: #7B4A2B;">
+            Dois-je prendre rendez-vous ?
+          </span>
+          <svg class="faq-arrow" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <div class="faq-answer" id="faq1">
+          <p class="text-gray-700 font-playfair font-light leading-relaxed">
+            Oui, nous recommandons fortement de prendre rendez-vous pour garantir votre créneau. Vous pouvez réserver directement sur Planity ou nous appeler.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Question 2 -->
+      <div class="faq-item">
+        <button class="faq-question" data-target="faq2">
+          <span class="text-lg font-playfair font-light" style="color: #7B4A2B;">
+            Qu'est-ce que le Head Spa ?
+          </span>
+          <svg class="faq-arrow" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <div class="faq-answer" id="faq2">
+          <p class="text-gray-700 font-playfair font-light leading-relaxed">
+            Le Head Spa est un soin relaxant du cuir chevelu qui combine massage, nettoyage en profondeur et soins hydratants. C'est un moment de détente unique pour vos cheveux et votre bien-être.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Question 3 -->
+      <div class="faq-item">
+        <button class="faq-question" data-target="faq3">
+          <span class="text-lg font-playfair font-light" style="color: #7B4A2B;">
+            Quels produits utilisez-vous ?
+          </span>
+          <svg class="faq-arrow" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <div class="faq-answer" id="faq3">
+          <p class="text-gray-700 font-playfair font-light leading-relaxed">
+            Nous utilisons principalement les produits Davines, une marque italienne reconnue pour ses formules naturelles et respectueuses de l'environnement.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Question 4 -->
+      <div class="faq-item">
+        <button class="faq-question" data-target="faq4">
+          <span class="text-lg font-playfair font-light" style="color: #7B4A2B;">
+            Combien de temps dure une séance ?
+          </span>
+          <svg class="faq-arrow" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <div class="faq-answer" id="faq4">
+          <p class="text-gray-700 font-playfair font-light leading-relaxed">
+            Cela dépend du service : une coupe simple prend environ 45 minutes, tandis qu'une coloration peut nécessiter 2 à 3 heures. Le Head Spa dure environ 1 heure.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Question 5 -->
+      <div class="faq-item">
+        <button class="faq-question" data-target="faq5">
+          <span class="text-lg font-playfair font-light" style="color: #7B4A2B;">
+            Acceptez-vous les cartes de paiement ?
+          </span>
+          <svg class="faq-arrow" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <div class="faq-answer" id="faq5">
+          <p class="text-gray-700 font-playfair font-light leading-relaxed">
+            Oui, nous acceptons les cartes bancaires, les espèces et les paiements sans contact. Nous proposons également le paiement mobile.
+          </p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Item FAQ */
+  .faq-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .faq-item:hover {
+    border-color: #7B4A2B;
+    box-shadow: 0 2px 8px rgba(123, 74, 43, 0.1);
+  }
+  
+  /* Question (bouton) */
+  .faq-question {
+    width: 100%;
+    padding: 20px 24px;
+    background: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    text-align: left;
+  }
+  
+  .faq-question:hover {
+    background-color: #fafafa;
+  }
+  
+  .faq-question.active {
+    background-color: rgba(123, 74, 43, 0.05);
+  }
+  
+  /* Flèche */
+  .faq-arrow {
+    width: 20px;
+    height: 20px;
+    color: #7B4A2B;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 16px;
+  }
+  
+  .faq-question.active .faq-arrow {
+    transform: rotate(180deg);
+  }
+  
+  /* Réponse */
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    background-color: #fafafa;
+  }
+  
+  .faq-answer.active {
+    max-height: 200px;
+    padding: 20px 24px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 375px) {
+    .faq-question {
+      padding: 16px 18px;
+    }
+    
+    .faq-question span {
+      font-size: 16px;
+    }
+    
+    .faq-arrow {
+      width: 18px;
+      height: 18px;
+      margin-left: 12px;
+    }
+    
+    .faq-answer.active {
+      padding: 16px 18px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .faq-question {
+      padding: 24px 28px;
+    }
+    
+    .faq-question span {
+      font-size: 20px;
+    }
+    
+    .faq-answer.active {
+      padding: 24px 28px;
+    }
+  }
+  
+  /* Animation pour l'ouverture */
+  .faq-answer p {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+  }
+  
+  .faq-answer.active p {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Focus states pour l'accessibilité */
+  .faq-question:focus {
+    outline: 2px solid #7B4A2B;
+    outline-offset: 2px;
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(function(question) {
+      question.addEventListener('click', function() {
+        const targetId = this.dataset.target;
+        const answer = document.getElementById(targetId);
+        const isActive = this.classList.contains('active');
+        
+        // Fermer toutes les autres questions
+        faqQuestions.forEach(function(q) {
+          q.classList.remove('active');
+          const otherId = q.dataset.target;
+          const otherAnswer = document.getElementById(otherId);
+          if (otherAnswer) {
+            otherAnswer.classList.remove('active');
+          }
+        });
+        
+        // Ouvrir/fermer la question cliquée
+        if (!isActive && answer) {
+          this.classList.add('active');
+          answer.classList.add('active');
+        }
+      });
+    });
+    
+    // Fermer avec la touche Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        faqQuestions.forEach(function(q) {
+          q.classList.remove('active');
+          const targetId = q.dataset.target;
+          const answer = document.getElementById(targetId);
+          if (answer) {
+            answer.classList.remove('active');
+          }
+        });
+      }
+    });
+  });
+</script>

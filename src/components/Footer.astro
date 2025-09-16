@@ -1,0 +1,55 @@
+---
+// Footer.astro - Footer minimaliste
+---
+
+<footer style="background: #4A2C2A; background: linear-gradient(135deg, #4A2C2A 0%, #7B4A2B 50%, #A0522D 100%);">
+  <div class="max-w-4xl mx-auto px-6 py-12">
+    
+    <!-- Contenu centré -->
+    <div class="text-center">
+      
+      <!-- Logo -->
+      <h3 class="font-great-vibes text-2xl text-white mb-4">
+        La Cabane de Lucie
+      </h3>
+      
+      <!-- Copyright simple -->
+      <p class="text-white/70 font-playfair font-light text-sm">
+        © 2025 La Cabane de Lucie. Tous droits réservés.
+      </p>
+      
+    </div>
+    
+  </div>
+</footer>
+
+<style>
+  /* Responsive */
+  @media (max-width: 375px) {
+    footer div {
+      padding: 0 16px;
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+    }
+    
+    p {
+      font-size: 12px;
+    }
+  }
+  
+  /* Animation simple */
+  footer {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>

@@ -1,0 +1,202 @@
+---
+// MapSection.astro - Section carte Google Maps mobile-first
+---
+
+<section class="py-16 px-6 bg-white">
+  <div class="max-w-4xl mx-auto">
+    <!-- Titre -->
+    <h2 class="text-2xl font-great-vibes font-normal text-center mb-8" style="color: #7B4A2B;">
+      Nous Trouver
+    </h2>
+    
+    <!-- Informations d'adresse -->
+    <div class="text-center mb-8">
+      <p class="text-lg font-playfair font-light mb-2" style="color: #7B4A2B;">
+        Esthétique bio Linda
+      </p>
+      <p class="text-gray-600 font-playfair font-light">
+      </p>
+    </div>
+    
+    <!-- Container de la carte -->
+    <div class="map-container">
+      <iframe
+        id="googleMap"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dOWTgHz5y7vUZc&q=Esthétique+bio+Linda,Paris+Belleville&zoom=15&maptype=roadmap"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Localisation d'Esthétique bio Linda à Paris Belleville">
+      </iframe>
+    </div>
+    
+  </div>
+</section>
+
+<style>
+  /* Container de la carte */
+  .map-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .map-container:hover {
+    box-shadow: 0 8px 30px rgba(123, 74, 43, 0.15);
+  }
+  
+  /* Iframe de la carte */
+  #googleMap {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 16px;
+  }
+  
+  
+  /* Responsive */
+  @media (max-width: 375px) {
+    .map-container {
+      height: 250px;
+      border-radius: 12px;
+    }
+    
+    #googleMap {
+      border-radius: 12px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .map-container {
+      height: 400px;
+      border-radius: 20px;
+    }
+    
+    #googleMap {
+      border-radius: 20px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .map-container {
+      height: 450px;
+    }
+  }
+  
+  /* Animation au chargement */
+  .map-container {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Style pour les navigateurs qui ne supportent pas les iframes */
+  .map-fallback {
+    display: none;
+    background-color: #f3f4f6;
+    border: 2px dashed #d1d5db;
+    border-radius: 16px;
+    padding: 40px 20px;
+    text-align: center;
+    color: #6b7280;
+  }
+  
+  /* Indicateur de chargement */
+  .map-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 3px solid #e5e7eb;
+    border-top: 3px solid #7B4A2B;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+    opacity: 0;
+  }
+  
+  .map-container.loading::before {
+    opacity: 1;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const mapContainer = document.querySelector('.map-container');
+    const mapIframe = document.getElementById('googleMap');
+    
+    if (mapContainer && mapIframe) {
+      // Ajouter la classe de chargement
+      mapContainer.classList.add('loading');
+      
+      // Supprimer l'indicateur de chargement une fois la carte chargée
+      mapIframe.addEventListener('load', function() {
+        setTimeout(function() {
+          mapContainer.classList.remove('loading');
+        }, 500);
+      });
+      
+      // Gestion d'erreur pour l'iframe
+      mapIframe.addEventListener('error', function() {
+        console.log('Erreur lors du chargement de la carte Google Maps');
+        mapContainer.classList.remove('loading');
+        
+        // Afficher un message d'erreur ou une carte de fallback
+        const fallback = document.createElement('div');
+        fallback.className = 'map-fallback';
+        fallback.style.display = 'flex';
+        fallback.style.flexDirection = 'column';
+        fallback.style.justifyContent = 'center';
+        fallback.style.alignItems = 'center';
+        fallback.innerHTML = `
+          <p style="color: #7B4A2B; font-weight: 500; margin-bottom: 8px;">
+            Carte temporairement indisponible
+          </p>
+          <p style="font-size: 14px;">
+            Esthétique bio Linda - Paris (Belleville)
+          </p>
+        `;
+        
+        mapContainer.appendChild(fallback);
+        mapIframe.style.display = 'none';
+      });
+    }
+    
+    // Intersection Observer pour l'animation d'entrée
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.style.animationDelay = '0.2s';
+            observer.unobserve(entry.target);
+          }
+        });
+      });
+      
+      if (mapContainer) {
+        observer.observe(mapContainer);
+      }
+    }
+  });
+</script>

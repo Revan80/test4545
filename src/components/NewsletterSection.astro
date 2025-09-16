@@ -1,0 +1,233 @@
+---
+// NewsletterSection.astro - Section newsletter mobile-first
+---
+
+<section class="py-16 px-6" style="background: #4A2C2A; background: linear-gradient(135deg, #4A2C2A 0%, #7B4A2B 50%, #A0522D 100%);">
+  <div class="max-w-lg mx-auto text-center">
+    <!-- Titre -->
+    <h2 class="text-2xl font-great-vibes font-normal text-white mb-6">
+      La Newsletter
+    </h2>
+    
+    <!-- Texte descriptif -->
+    <p class="text-white/90 font-playfair font-light text-lg mb-8 leading-relaxed">
+      Suivez les nouveautés du salon en vous abonnant
+    </p>
+    
+    <!-- Formulaire d'inscription -->
+    <form id="newsletterForm" class="newsletter-form">
+      <div class="newsletter-input-container">
+        <input 
+          type="email" 
+          id="emailInput"
+          placeholder="email@email.com" 
+          required
+          class="newsletter-input"
+        >
+        <button 
+          type="submit" 
+          class="newsletter-button"
+          aria-label="S'abonner à la newsletter"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+    </form>
+    
+    <!-- Message de confirmation (caché par défaut) -->
+    <div id="confirmationMessage" class="confirmation-message">
+      <p class="text-white font-playfair font-light">
+        ✓ Merci pour votre abonnement !
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Container du formulaire */
+  .newsletter-form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  /* Container unifié input + bouton */
+  .newsletter-input-container {
+    display: flex;
+    background-color: white;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .newsletter-input-container:focus-within {
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+  }
+  
+  /* Champ email */
+  .newsletter-input {
+    flex: 1;
+    padding: 16px 20px;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+    color: #374151;
+    outline: none;
+  }
+  
+  .newsletter-input::placeholder {
+    color: #9ca3af;
+    font-style: italic;
+  }
+  
+  /* Bouton flèche */
+  .newsletter-button {
+    padding: 16px 20px;
+    background-color: #7B4A2B;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+  }
+  
+  .newsletter-button:hover {
+    background-color: #6d3f26;
+    transform: scale(1.05);
+  }
+  
+  .newsletter-button:active {
+    transform: scale(0.98);
+  }
+  
+  /* Message de confirmation */
+  .confirmation-message {
+    display: none;
+    margin-top: 16px;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    animation: slideIn 0.5s ease-out;
+  }
+  
+  .confirmation-message.show {
+    display: block;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive */
+  @media (max-width: 375px) {
+    .newsletter-input {
+      padding: 14px 16px;
+      font-size: 15px;
+    }
+    
+    .newsletter-button {
+      padding: 14px 16px;
+      min-width: 50px;
+    }
+    
+    .newsletter-button svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .newsletter-form {
+      max-width: 450px;
+    }
+    
+    .newsletter-input {
+      padding: 18px 24px;
+      font-size: 17px;
+    }
+    
+    .newsletter-button {
+      padding: 18px 24px;
+      min-width: 70px;
+    }
+  }
+  
+  /* Animation pour le bouton au focus/hover */
+  .newsletter-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Style pour les navigateurs qui supportent backdrop-filter */
+  @supports (backdrop-filter: blur(10px)) {
+    .newsletter-input-container {
+      backdrop-filter: blur(10px);
+    }
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('newsletterForm');
+    const emailInput = document.getElementById('emailInput');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+    
+    if (form && emailInput && confirmationMessage) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = emailInput.value.trim();
+        
+        // Validation simple de l'email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert('Veuillez entrer une adresse email valide.');
+          return;
+        }
+        
+        // Simulation de l'abonnement (action fictive)
+        console.log('Abonnement newsletter pour:', email);
+        
+        // Afficher le message de confirmation
+        confirmationMessage.classList.add('show');
+        
+        // Vider le champ
+        emailInput.value = '';
+        
+        // Cacher le message après 3 secondes
+        setTimeout(function() {
+          confirmationMessage.classList.remove('show');
+        }, 3000);
+      });
+      
+      // Animation du bouton au survol sur desktop
+      if (window.innerWidth >= 1024) {
+        const button = form.querySelector('.newsletter-button');
+        if (button) {
+          button.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+          });
+          
+          button.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+          });
+        }
+      }
+    }
+  });
+</script>
